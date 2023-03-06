@@ -1,32 +1,20 @@
-import React, { useRef, useState } from 'react'
-
-const style = {
-  border: '1px solid black',
-  margin: '10px',
-  padding: '10px',
-}
+import React, { useEffect, useRef } from 'react'
 
 function App() {
-  const [count, setCount] = useState(0)
-  const countRef = useRef(0)
+  const idRef = useRef('')
+  //화면이 렌더링 될 때, 어떤 작업을 하고 싳싶다 : useEfeect!!
 
-  const plusStateCountButtonHandler = () => {
-    setCount(count + 1)
-  }
-  const plusRefCountButtonHandler = () => {
-    countRef.current++
-    console.log(countRef.current)
-  }
+  useEffect(() => {
+    idRef.current.focus()
+  }, [])
 
   return (
     <>
-      <div style={style}>
-        state 영역입니다. {count} <br />
-        <button onClick={plusStateCountButtonHandler}>state 증가</button>
+      <div>
+        아이디 : <input type="text" />
       </div>
-      <div style={style}>
-        ref 영역입니다, {countRef.current} <br />
-        <button onClick={plusRefCountButtonHandler}>ref 증가</button>
+      <div>
+        비밀번호 : <input type="password" ref={idRef} />
       </div>
     </>
   )
