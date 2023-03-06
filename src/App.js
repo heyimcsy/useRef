@@ -1,13 +1,35 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
+
+const style = {
+  border: '1px solid black',
+  margin: '10px',
+  padding: '10px',
+}
 
 function App() {
-  //reference
-  const ref = useRef('초기값')
-  console.log('ref', ref)
+  const [count, setCount] = useState(0)
+  const countRef = useRef(0)
 
-  ref.current = '변경값'
-  console.log('ref2', ref)
-  return <div>App</div>
+  const plusStateCountButtonHandler = () => {
+    setCount(count + 1)
+  }
+  const plusRefCountButtonHandler = () => {
+    countRef.current++
+    console.log(countRef.current)
+  }
+
+  return (
+    <>
+      <div style={style}>
+        state 영역입니다. {count} <br />
+        <button onClick={plusStateCountButtonHandler}>state 증가</button>
+      </div>
+      <div style={style}>
+        ref 영역입니다, {countRef.current} <br />
+        <button onClick={plusRefCountButtonHandler}>ref 증가</button>
+      </div>
+    </>
+  )
 }
 
 export default App
